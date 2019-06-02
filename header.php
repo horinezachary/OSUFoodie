@@ -1,7 +1,7 @@
 
 
 	<header>
-		OSU Foodie - <em> welcome<span id="username"><?php echo $user;?></span>!</em>
+		OSU Foodie - <em> Welcome <span id="username"><?php echo $_GET["user"];?></span>!</em>
 	</header>
 	<nav>
 		<ul>
