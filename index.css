@@ -1,6 +1,6 @@
 header {
-	
-	height: 20px; 
+
+	height: 20px;
 	background-color: lightgray;
 	margin-top: 0px;
 	margin-right: 0px;
@@ -34,7 +34,7 @@ nav ul {
     list-style-type: none;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+/*    background-color: #333;*/
 	margin: 0 0 0 0;
 }
 
@@ -46,7 +46,7 @@ nav li {
 nav li:nth-last-child(-n+4){
     border-right: none;
     float: right;
-    border-left:1px solid #bbb;
+  /*  border-left:1px solid #bbb;*/
 }
 
 nav li a {
@@ -164,7 +164,7 @@ em {
 }
 footer {
 	background-color: gray;
-	height: 20px; 
+	height: 20px;
 	padding: 10px;
 	padding-right: 10px;
 	color: white;
@@ -232,8 +232,8 @@ fieldset input[type="submit"], fieldset input[type="reset"], fieldset input[type
     color: #333;
 }
 #passformat {
-	float: right; 
-	width: 50%; 
+	float: right;
+	width: 50%;
 	font-size: 0.8em;"
 }
 
@@ -306,4 +306,23 @@ caption {
 .btn2:hover {
   background: orange;
   text-decoration: none;
+}
+
+.login
+ {
+	float: right;
+	padding: 0 20px 0 0;
+}
+
+.logo_header{
+	margin: 10px;
+}
+.logo{
+	float: left;
+}
+
+.current_page{
+	text-align: center;
+	font-family: Arial;
+
 }
