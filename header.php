@@ -1,5 +1,3 @@
-
-
 	<header>
 		OSU Foodie - <em> Welcome <span id="username"><?php echo $_GET["user"];?></span>!</em>
 	</header>
