@@ -3,4 +3,5 @@
 - Account pages - Jack
 - Homepage and Restaurants - Thomas
 - Restaurant Reviews - Zac
-- SQL Database - Michael
+- SQL Database - Zac
+- item menu - Michael
