@@ -24,11 +24,16 @@
 	}
 
     // query to select all information from supplier table
-    $restaurant = $_SESSION["Resto"];
+/*    $restaurant = $_SESSION["Resto"];
+    $query = "SELECT item_ID, item_name  FROM Item NATURAL JOIN Restaurant
+            where restaurant_name = '$restaurant' ";
+ */
+
+    $restaurant = $_GET['rid'];
     $query = "SELECT item_ID, item_name  FROM Item NATURAL JOIN Restaurant
             where restaurant_name = '$restaurant' ";
 
-// Get results from query
+    // Get results from query
 	$result = mysqli_query($conn, $query);
 	if (!$result) {
 		die("Query to show fields from table failed");
@@ -57,7 +62,7 @@
         //foreach($row as $cell)
                 //echo $_SESSION['Resto'];
                // echo "Favorite color is ".$_SESSION["favcolor"].".<br>"
-                echo "<td>$cell<a href=".$row[0].".php>".$_SESSION["favcolor"]."</a></td>";
+                echo "<td>$cell<a href=".$row[0].".php>".$row[0]."</a></td>";
                 echo "<td>$cell<a href='ListParts.php'>".$row[1]."</a></td>";
                 echo "</tr>";
     }
