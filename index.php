@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+
     <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title></title>
@@ -32,7 +33,7 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Restaurant</a>
+                <a class="nav-link" href="restaurant.php">Restaurant</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Account</a>
@@ -45,6 +46,51 @@
           </div>
           </div>
         </nav>
+
+        <div>
+          <h2>Restaurant Average Ratings</h2>
+          <?php
+          // change the value of $dbuser and $dbpass to your username and password
+             include 'connectvars.php';
+          	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+          	if (!$conn) {
+          		die('Could not connect: ' . mysql_error());
+          	}
+
+          // query to select all information from supplier table
+          /*	$query = "SELECT * FROM Restaurant";*/
+            $query = "SELECT Restaurant.restaurant_name, average FROM Restaurant NATURAL JOIN (SELECT Review.restaurant_ID, avg(Review.rating) as average FROM Review GROUP BY restaurant_ID) AS R ORDER BY average DESC";
+            $result = mysqli_query($conn, $query);
+            if (!$result) {
+              die("Query to show fields from table failed");
+            }
+          // get number of columns in table
+            $fields_num = mysqli_num_fields($result);
+            echo "<table id='t01' border='1'><tr>";
+            for($i=0; $i<$fields_num; $i++) {
+          		$field = mysqli_fetch_field($result);
+          		echo "<td><b>$field->name</b></td>";
+          	}
+            echo "</tr>\n";
+          	while($row = mysqli_fetch_row($result)) {
+          		echo "<tr>";
+          		// $row is array... foreach( .. ) puts every element
+          		// of $row to $cell variable
+          		foreach($row as $cell)
+          			echo "<td>$cell</td>";
+          		echo "</tr>\n";
+          	}
+
+
+
+
+            mysqli_free_result($result);
+          	mysqli_close($conn);
+
+          ?>
+
+
+        </div>
 
 
 
