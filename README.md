@@ -16,3 +16,5 @@ url variables:
 - dependent on page:
    - rid (restaurant id)
    - itemid (item id)
+
+ex. [osufoodie.horine.dev/restaurant.php?uid=111111&uname=Bob&rid=123234]("osufoodie.horine.dev/restaurant.php?uid=111111&uname=Bob&rid=123234")
