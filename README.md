@@ -17,4 +17,4 @@ url variables:
    - rid (restaurant id)
    - itemid (item id)
 
-ex. [osufoodie.horine.dev/restaurant.php?uid=111111&uname=Bob&rid=123234]("osufoodie.horine.dev/restaurant.php?uid=111111&uname=Bob&rid=123234")
+ex. [osufoodie.horine.dev/restaurant.php?uid=111111&uname=John147&rid=123234]("osufoodie.horine.dev/restaurant.php?uid=111111&uname=John147&rid=123234")
