@@ -67,7 +67,7 @@
 
 		// query to select all information from supplier table
 		/*	$query = "SELECT * FROM Restaurant";*/
-			$query = "SELECT Restaurant.restaurant_name, Restaurant.address, average FROM Restaurant LEFT JOIN (SELECT Review.restaurant_ID, avg(Review.rating) as average FROM Review GROUP BY restaurant_ID) AS R ON Restaurant.restaurant_ID = R.restaurant_ID
+			$query = "SELECT Restaurant.restaurant_ID, Restaurant.restaurant_name AS Name, Restaurant.address AS Address, ifnull(round(average,2),NULL) as Average FROM Restaurant LEFT JOIN (SELECT Review.restaurant_ID, avg(Review.rating) as average FROM Review GROUP BY restaurant_ID) AS R ON Restaurant.restaurant_ID = R.restaurant_ID
 ORDER BY average DESC";
 			$result = mysqli_query($conn, $query);
 			if (!$result) {
@@ -77,16 +77,22 @@ ORDER BY average DESC";
 			$fields_num = mysqli_num_fields($result);
 			echo "<table id='t01' border='1'><tr>";
 			for($i=0; $i<$fields_num; $i++) {
-				$field = mysqli_fetch_field($result);
-				echo "<td><b>$field->name</b></td>";
+					$field = mysqli_fetch_field($result);
+					if($field->name != "restaurant_ID"){
+						echo "<td><b>$field->name</b></td>";
+					}
 			}
-			echo "</tr>\n";
+			echo"</tr>\n";
+			/*echo "</tr>\n";
 			while($row = mysqli_fetch_row($result)) {
-				echo "<tr>";
+				echo "<tr>";*/
 				// $row is array... foreach( .. ) puts every element
 				// of $row to $cell variable
-				foreach($row as $cell)
-					echo "<td>$cell</td>";
+				//foreach($row as $cell)
+				while($row = mysqli_fetch_array($result)){
+					echo "<td>$cell<a href='restaurant.php?$rid=.$row[0]'>".$row[1]."</a></td>";
+					echo "<td>$cell<a href='restaurant.php?$rid=.$row[0]'>".$row[2]."</a></td>";
+					echo "<td>$cell<a href='restaurant.php?$rid=.$row[0]'>".$row[3]."</a></td>";
 				echo "</tr>\n";
 			}
 

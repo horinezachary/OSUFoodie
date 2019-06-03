@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+        session_start();
+        $_SESSION["Resto"] = "La Grande";
+		$currentpage="Home";
+		include "pages.php";
+?>
 <html lang="en" dir="ltr">
   <head>
 
@@ -48,7 +54,7 @@
         </nav>
 
         <div>
-          <h2>Restaurant Average Ratings</h2>
+          <h2>Top Restaurants</h2>
           <?php
           // change the value of $dbuser and $dbpass to your username and password
              include 'connectvars.php';
@@ -59,7 +65,7 @@
 
           // query to select all information from supplier table
           /*	$query = "SELECT * FROM Restaurant";*/
-            $query = "SELECT Restaurant.restaurant_name, average FROM Restaurant NATURAL JOIN (SELECT Review.restaurant_ID, avg(Review.rating) as average FROM Review GROUP BY restaurant_ID) AS R ORDER BY average DESC";
+            $query = "SELECT Restaurant.restaurant_ID, Restaurant.restaurant_name AS Name, round(average,2) AS Average FROM Restaurant NATURAL JOIN (SELECT Review.restaurant_ID, avg(Review.rating) as average FROM Review GROUP BY restaurant_ID) AS R ORDER BY average DESC LIMIT 5";
             $result = mysqli_query($conn, $query);
             if (!$result) {
               die("Query to show fields from table failed");
@@ -69,15 +75,20 @@
             echo "<table id='t01' border='1'><tr>";
             for($i=0; $i<$fields_num; $i++) {
           		$field = mysqli_fetch_field($result);
-          		echo "<td><b>$field->name</b></td>";
+              if($field->name != "restaurant_ID"){
+    						echo "<td><b>$field->name</b></td>";
+    					}
           	}
             echo "</tr>\n";
-          	while($row = mysqli_fetch_row($result)) {
-          		echo "<tr>";
+          //	while($row = mysqli_fetch_row($result)) {
+          	//	echo "<tr>";
+
           		// $row is array... foreach( .. ) puts every element
           		// of $row to $cell variable
-          		foreach($row as $cell)
-          			echo "<td>$cell</td>";
+          		//foreach($row as $cell)
+              while($row = mysqli_fetch_array($result)){
+      					echo "<td>$cell<a href='restaurant.php?$rid=.$row[0]'>".$row[1]."</a></td>";
+      					echo "<td>$cell<a href='restaurant.php?$rid=.$row[0]'>".$row[2]."</a></td>";
           		echo "</tr>\n";
           	}
 
