@@ -2,6 +2,8 @@
 <?php
 		$currentpage="Restaurant";
 		include "pages.php";
+		$uid_in = $_GET["uid"];
+		$uname_in = $_GET["uname"];
 ?>
 <html>
 	<head>
@@ -37,10 +39,10 @@
 
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-					<a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href=<?php echo "index.php?uid=$uid_in&uname=$uname_in" ?>>Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Restaurant</a>
+					<a class="nav-link" href=<?php echo "restaurant.php?uid=$uid_in&uname=$uname_in" ?>>Restaurant</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Account</a>
@@ -89,10 +91,11 @@ ORDER BY average DESC";
 				// $row is array... foreach( .. ) puts every element
 				// of $row to $cell variable
 				//foreach($row as $cell)
+
 				while($row = mysqli_fetch_array($result)){
-					echo "<td>$cell<a href='restaurant.php?$rid=.$row[0]'>".$row[1]."</a></td>";
-					echo "<td>$cell<a href='restaurant.php?$rid=.$row[0]'>".$row[2]."</a></td>";
-					echo "<td>$cell<a href='restaurant.php?$rid=.$row[0]'>".$row[3]."</a></td>";
+					echo "<td>$cell<a href='restaurant.php?rid=.$row[0]&uid=$uid_in&uname=$uname_in'>".$row[1]."</a></td>";
+					echo "<td>$cell<a href='restaurant.php?rid=.$row[0]&uid=$uid_in&uname=$uname_in'>".$row[2]."</a></td>";
+					echo "<td>$cell<a href='restaurant.php?rid=.$row[0]&uid=$uid_in&uname=$uname_in'>".$row[3]."</a></td>";
 				echo "</tr>\n";
 			}
 

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <?php
-        session_start();
-        $_SESSION["Resto"] = "La Grande";
+
 		$currentpage="Home";
 		include "pages.php";
+    $uid_in = $_GET["uid"];
+    $uname_in = $_GET["uname"];
 ?>
 <html lang="en" dir="ltr">
   <head>
@@ -39,7 +40,7 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="restaurant.php">Restaurant</a>
+                <a class="nav-link" href=<?php echo "restaurant.php?uid=$uid_in&uname=$uname_in" ?>>Restaurant</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Account</a>
@@ -85,10 +86,11 @@
 
           		// $row is array... foreach( .. ) puts every element
           		// of $row to $cell variable
-          		//foreach($row as $cell)
+
+
               while($row = mysqli_fetch_array($result)){
-      					echo "<td>$cell<a href='restaurant.php?$rid=.$row[0]'>".$row[1]."</a></td>";
-      					echo "<td>$cell<a href='restaurant.php?$rid=.$row[0]'>".$row[2]."</a></td>";
+      					echo "<td>$cell<a href='restaurant.php?rid=.$row[0]&uid=$uid_in&uname=$uname_in'>".$row[1]."</a></td>";
+      					echo "<td>$cell<a href='restaurant.php?rid=.$row[0]&uid=$uid_in&uname=$uname_in'>".$row[2]."</a></td>";
           		echo "</tr>\n";
           	}
 
