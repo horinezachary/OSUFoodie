@@ -12,7 +12,7 @@
 
           // query to select all information from supplier table
           /*	$query = "SELECT * FROM Restaurant";*/
-            $query = "SELECT Restaurant.restaurant_ID, Restaurant.restaurant_name AS Name, round(average,2) AS Average FROM Restaurant NATURAL JOIN (SELECT Review.restaurant_ID, avg(Review.rating) as average FROM Review GROUP BY restaurant_ID) AS R ORDER BY average DESC LIMIT 5";
+            $query = "SELECT Restaurant.restaurant_ID, Restaurant.restaurant_name AS Name, avg_review AS Average FROM Restaurant ORDER BY average DESC LIMIT 5";
             $result = mysqli_query($conn, $query);
             if (!$result) {
               die("Query to show fields from table failed");
