@@ -1,13 +1,7 @@
 <?php
-// change the value of $dbuser and $dbpass to your username and password
-   include 'connectvars.php';
-	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-	if (!$conn) {
-		die('Could not connect: ' . mysql_error());
-	}
 
 // query to select all information from supplier table
-	$query = "SELECT sname, rating, description, item_name FROM Review INNER JOIN Item on Review.item_ID = Item.item_ID NATURAL JOIN Student WHERE Review.restaurant_ID = 120000";
+	$query = "SELECT sname AS 'Student', rating AS 'Rating', description AS 'Description', item_name AS 'Item' FROM Review INNER JOIN Item on Review.item_ID = Item.item_ID NATURAL JOIN Student WHERE Review.restaurant_ID = $rid";
 
 
 // Get results from query
@@ -38,6 +32,3 @@
 	mysqli_free_result($result);
 	mysqli_close($conn);
 ?>
-</body>
-
-</html>

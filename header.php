@@ -39,7 +39,7 @@
 
 							foreach ($content as $page => $location){
             echo  "<li class='nav-item'>
-                <div class='nav-link'> <a href='$location?uid=$uid_in&uname=$uname_in> $page <span class='sr-only'>$page</span></a></div>
+                <div class='nav-link'> <a href='$location?uid=$uid_in&uname=$uname_in'> $page <span class='sr-only'>$page</span></a></div>
               </li>";
 
 						}?>
