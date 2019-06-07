@@ -13,6 +13,7 @@ Left to do:
   - add an item
   - remove a review?
 - add a review
+- add menu to restaurant page
 
 
 
