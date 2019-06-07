@@ -19,7 +19,7 @@
       <div class="logo_header">
       <h2 class="logo">Logo</h2>
        <a class="login" href="#login">Login</a>
-       <h2 class="current_page">Home</h2>
+       <h2 class="current_page">OSU Foodie</h2>
       </div>
 
 
