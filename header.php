@@ -18,7 +18,14 @@
 
       <div class="logo_header">
       <h2 class="logo">Logo</h2>
-       <a class="login" href="#login">Login</a>
+		<?php
+		if (!$uid_in || !$uname_in) {
+       	echo "<a class='login' href='login.php'>Login</a>";
+	 	}
+		else {
+			echo "<a class='login' href='index.php'>Logout</a>";
+		}
+		?>
        <h2 class="current_page">OSU Foodie</h2>
       </div>
 
