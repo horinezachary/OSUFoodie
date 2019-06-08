@@ -18,8 +18,8 @@
       }
       echo"</tr>\n";
       while($row = mysqli_fetch_array($restaurants)){
-         echo "<td>$cell<a href='singleRestaurant.php?rid=$row[0]&uid=$uid_in&uname=$uname_in'>$row[1]</a></td>";
-         echo "<td>$cell<a href='singleRestaurant.php?rid=$row[0]&uid=$uid_in&uname=$uname_in'>$row[2]</a></td>";
+         echo "<td>$cell<a href='ownerEdit.php?rid=$row[0]&uid=$uid_in&uname=$uname_in'>$row[1]</a></td>";
+         echo "<td>$cell<a href='ownerEdit.php?rid=$row[0]&uid=$uid_in&uname=$uname_in'>$row[2]</a></td>";
          echo "<td>$cell<a>$row[3]</a></td>";
          echo "</tr>\n";
       }
