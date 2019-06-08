@@ -11,7 +11,7 @@
 	}
 // get number of columns in table
 	$fields_num = mysqli_num_fields($result);
-	echo "<h1>Reviews:</h1>";
+	echo "<h3>Reviews:</h3>";
 	echo "<table id='t01' border='1'><tr>";
 
 // printing table headers
@@ -34,5 +34,4 @@
 	}
 
 	mysqli_free_result($result);
-	mysqli_close($conn);
 ?>

@@ -1,5 +1,4 @@
 <div>
-   <h3>Your Restaurants</h3>
    <?php
    // query to select all information from supplier table
    /*	$query = "SELECT * FROM Restaurant";*/

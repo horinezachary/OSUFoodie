@@ -1,5 +1,5 @@
 <div>
-   <h3>Your Reviews</h3>
+   <h3>Your Reviews:</h3>
      <?php
      // query to select all information from supplier table
         $query = "SELECT Restaurant.restaurant_ID, Restaurant.restaurant_name AS 'Restaurant', Review.rating AS 'Rating', Review.description AS 'Description', Item.item_name AS 'Item' FROM Review INNER JOIN Item on Review.item_ID = Item.item_ID INNER JOIN Restaurant ON Restaurant.restaurant_ID = Review.restaurant_ID NATURAL JOIN Student WHERE Student.Account_ID = $aid";
