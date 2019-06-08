@@ -36,6 +36,8 @@
          echo "<h6>Average Rating: $review</h6>";
          echo "</br>";
          include "review.php";
+         $rid = $_GET["rid"];
+         echo "<a href='addReview.php?rid=$rid&uid=$uid_in&uname=$uname_in'>Write Review</a> ";
          include "menu.php";
 
          mysqli_free_result($result);
