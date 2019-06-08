@@ -36,9 +36,15 @@
 		while($row = mysqli_fetch_array($it_id)){
 			$iid = $row[0];
 		}
+		$queryIn = "SELECT sID FROM Student where Account_ID = $uid_in";
+		$s_id = mysqli_query($conn,$queryIn);
+		$fields_num = mysqli_num_fields($s_id);
+		while($row = mysqli_fetch_array($s_id)){
+			$sid = $row[0];
+		}
 
 		$rid = $_GET["rid"];
-		$query = "INSERT INTO Review (Review_ID, rating, description, sID, item_ID, restaurant_ID, date_added) VALUES( UUID(),'$rating','$description','$uid_in','$iid','$rid', CURRENT_DATE())";
+		$query = "INSERT INTO Review (rating, description, sID, item_ID, restaurant_ID, date_added) VALUES('$rating','$description','$sid','$iid','$rid', CURRENT_DATE())";
 							if(mysqli_query($conn, $query)){
 											$msg =  "Record added successfully.<p>";
 							} else{
