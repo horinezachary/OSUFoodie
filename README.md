@@ -15,7 +15,7 @@ Left to do:
   - [ ] remove a review?
 - [ ] add a review
 - [X] add menu to restaurant page
-- [ ] item pages (if time allows)
+- [X] item pages (if time allows)
 
 
 
