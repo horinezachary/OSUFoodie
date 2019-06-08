@@ -19,7 +19,7 @@
           $query = "SELECT Student.sID, Student.sname AS Name, Account.Username AS Username FROM Student INNER JOIN Account ON Student.Account_ID = Account.Account_ID WHERE Account.Account_ID = $aid";
          $student = mysqli_query($conn, $query);
          if (!$student) {
-            die("Query to show fields from table failed");
+            die("You need to login first.");
          }
 
          $oquery = "SELECT Owner.Owner_ID, Owner.Owner_name AS Name, Account.Username AS Username FROM Owner INNER JOIN Account ON Owner.Account_ID = Account.Account_ID WHERE Account.Account_ID = $aid";
