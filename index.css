@@ -235,7 +235,10 @@ fieldset input[type="submit"], fieldset input[type="reset"], fieldset input[type
 	float: right;
 	width: 50%;
 	font-size: 0.8em;"
+
 }
+
+
 
 table,
 th,
@@ -319,6 +322,10 @@ caption {
 }
 .logo{
 	float: left;
+}
+
+.light{
+    float:left;
 }
 
 .current_page{
