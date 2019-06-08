@@ -87,8 +87,10 @@
 
           mysqli_free_result($owner);
           mysqli_free_result($student);
+          if ($oid) {
           echo "</br>";
           echo "<h3>Your Restaurants:</h3>";
+          }
           mysqli_close($conn);
        ?>
     </body>
