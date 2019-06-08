@@ -1,12 +1,6 @@
 <div>
-   <h3>Reviews</h3>
+   <h3>Your Reviews:</h3>
      <?php
-     include 'connectvars.php';
-
-     $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-     if (!$conn) {
-        die('Could not connect: ' . mysql_error());
-     }
      // query to select all information from supplier table
         $query = "SELECT Restaurant.restaurant_ID, Restaurant.restaurant_name AS 'Restaurant', Review.rating AS 'Rating', Review.description AS 'Description', Item.item_name AS 'Item' FROM Review INNER JOIN Item on Review.item_ID = Item.item_ID INNER JOIN Restaurant ON Restaurant.restaurant_ID = Review.restaurant_ID NATURAL JOIN Student WHERE Student.Account_ID = $aid";
      // Get results from query
@@ -36,5 +30,4 @@
         }
 
         mysqli_free_result($result);
-        mysqli_close($conn);
      ?>
