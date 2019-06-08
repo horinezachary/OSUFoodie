@@ -31,8 +31,8 @@
         //foreach($row as $cell)
                 //echo $_SESSION['Resto'];
                // echo "Favorite color is ".$_SESSION["favcolor"].".<br>"
-                echo "<td>$cell<a href=".$row[0].".php>".$row[0]."</a></td>";
-                echo "<td>$cell<a href='Item.php?$iid=$row[0]'>".$row[1]."</a></td>";
+                echo "<td>$cell<a>".$row[0]."</a></td>";
+                echo "<td>$cell<a>".$row[1]."</a></td>";
                 echo "</tr>";
     }
 
