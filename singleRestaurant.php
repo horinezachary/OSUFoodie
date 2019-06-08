@@ -36,6 +36,12 @@
          echo "<h6>Average Rating: $review</h6>";
          echo "</br>";
          include "review.php";
+         include "menu.php";
+
+         mysqli_free_result($result);
+         echo "</br>";
+         echo "<h3>Menu:</h3>";
+         mysqli_close($conn);
           ?>
    </div>
    </body>
