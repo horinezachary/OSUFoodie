@@ -5,5 +5,4 @@
 		"Restaurant" => "restaurant.php",
 		"Account" => "account.php",
 		"About Us" => "aboutUs.php");
-
 ?>
