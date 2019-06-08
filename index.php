@@ -1,7 +1,9 @@
 <?php include "header.php" ?>
 
         <div>
-          <h2>Home</h2>
+          <h1>Home</h1>
+       </br>
+       <h3>Top 5 Restaurants:</h3>
           <?php
           // change the value of $dbuser and $dbpass to your username and password
              include 'connectvars.php';
@@ -35,8 +37,8 @@
 
 
               while($row = mysqli_fetch_array($result)){
-      					echo "<td>$cell<a href='restaurant.php?rid=.$row[0]&uid=$uid_in&uname=$uname_in'>".$row[1]."</a></td>";
-      					echo "<td>$cell<a href='restaurant.php?rid=.$row[0]&uid=$uid_in&uname=$uname_in'>".$row[2]."</a></td>";
+      					echo "<td>$cell<a href='singleRestaurant.php?rid=$row[0]&uid=$uid_in&uname=$uname_in'>".$row[1]."</a></td>";
+      					echo "<td>$cell<a href='singleRestaurant.php?rid=$row[0]&uid=$uid_in&uname=$uname_in'>".$row[2]."</a></td>";
           		echo "</tr>\n";
           	}
 
