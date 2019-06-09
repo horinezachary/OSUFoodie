@@ -1,5 +1,6 @@
 <?php
    include "header.php";
+
 ?>
 
 
@@ -73,6 +74,8 @@
              echo "<h6>Owner ID: $oid</h6>";
           }
           echo "</br>";
+
+
            ?>
 
 
@@ -92,6 +95,7 @@
           echo "<h3>Your Restaurants:</h3>";
           }
           mysqli_close($conn);
+          echo "<a href='addRestaurant.php?rid=$rid&uid=$uid_in&uname=$uname_in'>Add Restaurant</a> ";
        ?>
     </body>
 </html>

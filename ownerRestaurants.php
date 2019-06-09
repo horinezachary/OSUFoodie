@@ -10,7 +10,7 @@
    // get number of columns in table
       $fields_num = mysqli_num_fields($restaurants);
       echo "<table id='t01' border='1'><tr>";
-      for($i=0; $i<$fields_num; $i++) {
+      for($i=0; $i<$fields_num+1; $i++) {
             $field = mysqli_fetch_field($restaurants);
             if($field->name != "restaurant_ID"){
                echo "<td><b>$field->name</b></td>";
@@ -21,6 +21,7 @@
          echo "<td>$cell<a href='ownerEdit.php?rid=$row[0]&uid=$uid_in&uname=$uname_in'>$row[1]</a></td>";
          echo "<td>$cell<a href='ownerEdit.php?rid=$row[0]&uid=$uid_in&uname=$uname_in'>$row[2]</a></td>";
          echo "<td>$cell<a>$row[3]</a></td>";
+         echo "<td>$cell<a href='deleteRestaurant.php?rid=$row[0]&uid=$uid_in&uname=$uname_in'>"."X"."</a></td>";
          echo "</tr>\n";
       }
 
