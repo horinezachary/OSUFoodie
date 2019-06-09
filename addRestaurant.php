@@ -6,7 +6,7 @@
 ?>
 <html>
 	<head>
-		<title>Add Review</title>
+		<title>Add Restaurant</title>
 		<link rel="stylesheet" href="index.css">
 		<script type = "text/javascript"  src = "verifyInput.js" > </script>
 	</head>
@@ -15,7 +15,7 @@
 
 <?php
 	include "header.php";
-	$msg = "Add new Review";
+	$msg = "Add new Restaurant";
 
 // change the value of $dbuser and $dbpass to your username and password
 	include 'connectvars.php';
