@@ -2,7 +2,7 @@
    <h3>Your Reviews:</h3>
      <?php
      // query to select all information from supplier table
-        $query = "SELECT Restaurant.restaurant_ID, Restaurant.restaurant_name AS 'Restaurant', Review.rating AS 'Rating', Review.description AS 'Description', Item.item_name AS 'Item', Item.item_ID, date_added AS 'Date' FROM Review INNER JOIN Item on Review.item_ID = Item.item_ID INNER JOIN Restaurant ON Restaurant.restaurant_ID = Review.restaurant_ID NATURAL JOIN Student WHERE Student.Account_ID = $aid";
+        $query = "SELECT Restaurant.restaurant_ID, Restaurant.restaurant_name AS 'Restaurant', Review.rating AS 'Rating', Review.description AS 'Description', Item.item_name AS 'Item', Item.item_ID, date_added AS 'Date', review_ID as 'Delete' FROM Review INNER JOIN Item on Review.item_ID = Item.item_ID INNER JOIN Restaurant ON Restaurant.restaurant_ID = Review.restaurant_ID NATURAL JOIN Student WHERE Student.Account_ID = $aid";
      // Get results from query
         $result = mysqli_query($conn, $query);
         if (!$result) {
@@ -27,6 +27,7 @@
            echo "<td>$cell<a>$row[3]</a></td>";
            echo "<td>$cell<a href='item.php?itemid=$row[5]&uid=$uid_in&uname=$uname_in'>$row[4]</a></td>";
            echo "<td>$cell<a>$row[6]</a></td>";
+           echo "<td><a href = 'delete.php?review_id=$row[7]&uid=$uid_in&uname=$uname_in&rid=$row[0]'</a>X</td>";
            echo "</tr>\n";
         }
 
