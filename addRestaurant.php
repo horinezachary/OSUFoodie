@@ -55,7 +55,7 @@
 			}
 
 		$rid = $_GET["rid"];
-		$query = "INSERT INTO Restaurant (restaurant_ID, restaurant_name, address, owner_id, avg_review) VALUES(UUID(),'$rname','$address','$oid',NULL)";
+		$query = "INSERT INTO Restaurant (restaurant_name, address, owner_id, avg_review) VALUES('$rname','$address','$oid',NULL)";
 							if(mysqli_query($conn, $query)){
 											$msg =  "Record added successfully.<p>";
 							} else{
