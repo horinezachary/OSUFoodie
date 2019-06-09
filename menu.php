@@ -14,7 +14,7 @@
 	}
 // get number of columns in table
 	$fields_num = mysqli_num_fields($result);
-	echo "<table id='t01' border='1'><tr>";
+	echo "<table table table class='table table-bordered table-hover table-condensed' id='t01' border='1' style='width:75%'><tr>";
 
 // printing table headers
 	for($i=0; $i<$fields_num; $i++) {
@@ -41,7 +41,7 @@
                 echo "<td>$cell<a href='item.php?itemid=".$row[0]."&uid=$uid_in&uname=$uname_in'>".$row[1]."</a></td>";
                 echo "</tr>";
     }
-
+        echo "</table>";
         mysqli_free_result($result);
     ?>
 </body>
