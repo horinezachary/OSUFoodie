@@ -42,6 +42,18 @@
 			$oid = $row[0];
 		}
 
+		if($oid < 1){
+					echo "in create owner";
+
+					$queryAdd = "INSERT INTO Owner (Owner_ID, Owner_name, Account_ID) VALUES('$oid','$uname_in','$uid_in')";
+					if(mysqli_query($conn, $queryAdd)){
+									$msg =  "Record added successfully.<p>";
+					} else{
+									echo "ERROR: Could not able to execute $queryAdd." . mysqli_error($conn);
+					}
+
+			}
+
 		$rid = $_GET["rid"];
 		$query = "INSERT INTO Restaurant (restaurant_ID, restaurant_name, address, owner_id, avg_review) VALUES(UUID(),'$rname','$address','$oid',NULL)";
 							if(mysqli_query($conn, $query)){
