@@ -7,13 +7,13 @@
 - item menu - Michael
 
 Left to do:
-- [ ] finish login
-- [ ] add a restaurant
-- [ ] owner account page
+- [X] finish login
+- [X] add a restaurant
+- [X] owner account page
   - [X] owned restauants
-  - [ ] add an item
-  - [ ] remove a review?
-- [ ] add a review
+  - [X] add an item
+  - [X] remove a review?
+- [X] add a review
 - [X] add menu to restaurant page
 - [X] item pages (if time allows)
 
