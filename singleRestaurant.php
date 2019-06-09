@@ -35,6 +35,7 @@
          echo "<h6>$raddr</h6>";
          echo "<h6>Average Rating: $review</h6>";
          echo "</br>";
+         echo "<h3>Reviews:</h3>";
          include "review.php";
          echo "<a href='addReview.php?rid=$rid&uid=$uid_in&uname=$uname_in'>Write Review</a> ";
          include "menu.php";
