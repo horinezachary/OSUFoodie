@@ -18,7 +18,7 @@
 
 		// query to select all information from supplier table
 		/*	$query = "SELECT * FROM Restaurant";*/
-			$query = "SELECT Restaurant.restaurant_ID, Restaurant.restaurant_name AS Name, Restaurant.address AS Address, avg_review as Average FROM Restaurant";
+			$query = "SELECT Restaurant.restaurant_ID, Restaurant.restaurant_name AS Name, Restaurant.address AS Address, avg_review as Average FROM Restaurant ORDER BY Average DESC";
 			$result = mysqli_query($conn, $query);
 			if (!$result) {
 				die("Query to show fields from table failed");
