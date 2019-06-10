@@ -13,6 +13,6 @@ include 'header.php' ?>
         die("Query failed on delete");
     }
 
-    echo "<script>window.location = 'account.php?uid=$sid&uname=$sname'</script>"
+   echo "<script>window.location = 'account.php?uid=$u&uname=$name'</script>"
 
 ?>
