@@ -3,7 +3,9 @@ include 'header.php' ?>
 <?php
     include 'connectvars.php';
     $red = $_GET['review_id'];
-	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    $u = $_GET['uid'];
+    $name = $_GET['uname'];
+    $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	if (!$conn) {
 			die('Could not connect: ' . mysql_error());
 	}
