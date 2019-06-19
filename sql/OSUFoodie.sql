@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: Jun 09, 2019 at 03:02 PM
+-- Generation Time: Jun 18, 2019 at 11:01 PM
 -- Server version: 10.3.13-MariaDB-log
 -- PHP Version: 7.0.33
 
@@ -21,44 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `cs340_horinez`
 --
-
-DELIMITER $$
---
--- Procedures
---
-CREATE DEFINER=`cs340_horinez`@`%` PROCEDURE `updateAvgReview` (IN `rid` INT(6))  NO SQL
-BEGIN 
-    UPDATE Restaurant
-            SET avg_review = (SELECT avg(rating) FROM Review NATURAL JOIN Restaurant WHERE restaurant_id = rid)
-    WHERE restaurant_id = rid;
-END$$
-
---
--- Functions
---
-CREATE DEFINER=`cs340_horinez`@`%` FUNCTION `restaurantRank` (`x` VARCHAR(6)) RETURNS VARCHAR(10) CHARSET utf8 NO SQL
-BEGIN
-declare average decimal(3,2);
-
- SELECT AVG(rating) INTO average FROM Review R, Restaurant R1 WHERE
- R1.restaurant_ID = R.restaurant_ID AND X = R1.restaurant.ID GROUP
-BY R1.restaurant_ID;
-
- IF average IS NULL THEN
- RETURN 'No Reviews';
- END IF;
-
- IF average > 4.0 THEN
- RETURN "GREAT";
- END IF;
-
- IF average > 2.5 THEN
- RETURN "GOOD";
- END IF;
- RETURN 'BAD';
-END$$
-
-DELIMITER ;
+CREATE DATABASE IF NOT EXISTS `cs340_horinez` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `cs340_horinez`;
 
 -- --------------------------------------------------------
 
@@ -77,24 +41,30 @@ CREATE TABLE `Account` (
 --
 
 INSERT INTO `Account` (`Account_ID`, `Username`, `Password`) VALUES
-(123, 'st', 'password'),
-(932, 'davisjack', 'password'),
-(1999, 'tpietro', 'pizzapizza'),
-(111111, 'John147', 'pass123'),
-(222314, 'blakehead', 'thelongnight'),
-(345313, 'popper', '123456789'),
-(454354, 'admin', 'qwerty'),
-(463843, 'jackdavis', 'password'),
-(540000, 'onidman', 'oregon'),
-(546456, 'bob', 'hope'),
+(123000, 'dreampizza', 'pizzabubble'),
+(123040, 'hawiianboyz', 'password'),
+(123050, 'dominosonmoroe', 'pizzapizzapizza'),
+(123060, 'ddog', 'pubandgrub'),
+(123070, 'jerseyMikesSubs', 'cheesesteak'),
+(123080, 'mcmenamins', 'beer!'),
+(123090, 'beaverHut', 'beaverhutbutt'),
+(123110, 'clods', 'clodsbar'),
+(123202, 'bombs', 'bacafe'),
+(321432, 'horinez2', 'dasdaf'),
 (555222, 'jackdav', 'password'),
-(555555, 'jacobholt_32', '10301980'),
-(555556, 'TEST', 'thisisatest'),
-(666542, 'buddy123', 'jan101980'),
-(721377, 'nomore', 'please'),
-(888992, 'yeahbuddy', 'longpassword'),
 (932000, 'horinez', 'buttsbuttsbutts'),
-(999999, 'ALLCAPS', 'PASSWORDLONG');
+(932001, 'mrcheese', 'cheese!'),
+(932011, 'huangm', 'password'),
+(932012, 'oconnol', 'password'),
+(932013, 'donnahuc', 'password'),
+(932014, 'hinemaf', 'password'),
+(932015, 'harmanv', 'password'),
+(932016, 'sprayb', 'password'),
+(932017, 'fitzgle', 'password'),
+(932018, 'howarb', 'password'),
+(932019, 'gatsja', 'password'),
+(932020, 'marscs', 'password'),
+(932021, 'smithjo', 'password');
 
 -- --------------------------------------------------------
 
@@ -103,8 +73,8 @@ INSERT INTO `Account` (`Account_ID`, `Username`, `Password`) VALUES
 --
 
 CREATE TABLE `Item` (
-  `item_ID` int(6) NOT NULL,
-  `item_name` char(20) NOT NULL,
+  `item_ID` int(8) NOT NULL,
+  `item_name` char(30) NOT NULL,
   `restaurant_ID` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -113,23 +83,134 @@ CREATE TABLE `Item` (
 --
 
 INSERT INTO `Item` (`item_ID`, `item_name`, `restaurant_ID`) VALUES
-(100000, 'Fried Rice', 310000),
-(123000, 'Curry with Rice', 120000),
-(123122, 'Alfredo Pasta', 123234),
-(123123, 'Hamburger', 123234),
-(150000, 'Crown Royal', 320000),
-(234567, 'Cheeseburger', 250000),
-(344123, 'Fried Noodles', 250050),
-(345000, 'Mashed Potatoes', 312500),
-(345678, 'Chicken Wings', 300000),
-(981258, 'quesadilla', 120000),
-(981260, 'taco', 123234),
-(981278, 'ham soup', 5),
-(981279, 'steak', 312500),
-(981280, 'generic food', 400000),
-(981281, 'good burger', 450000),
-(981282, 'better burger', 450000),
-(981283, 'best burger', 450000);
+(29193, 'Bacon Cheese Stuffed', 100001),
+(25840655, 'Cheese stuffed', 100001),
+(25840656, 'Colossal Burger', 100001),
+(25840657, 'Milkshake', 100001),
+(25840658, 'Three cheese burger', 100001),
+(25840659, 'Spicy Sriracha meltdown', 100001),
+(25840660, 'big kahuna', 100001),
+(25840662, 'chicken sandwich', 100001),
+(25840674, 'Hot Wings', 450014),
+(25840675, 'Nacho Tortillas', 450014),
+(25840676, 'Super Nachos', 450014),
+(25840677, 'Chicken Strips', 450014),
+(25840678, 'French Fries', 450014),
+(25840679, 'Onion Rings', 450014),
+(25840680, 'Chips & Salsa', 450014),
+(25840681, 'Clodfelter\'s Homemade Soup', 450014),
+(25840682, 'Ham and Cheese Sandwich', 450014),
+(25840683, 'Turkey Sandwich', 450014),
+(25840684, 'BLT', 450014),
+(25840685, 'Tuna Sandwich', 450014),
+(25840686, 'Chips and Salsa', 450008),
+(25840687, 'Jalapeno Fries', 450008),
+(25840688, 'Bomber Nachos', 450008),
+(25840689, 'Homemade Tamale', 450008),
+(25840690, 'Cheese Quesadilla', 450008),
+(25840691, 'Tortilla soup', 450008),
+(25840692, 'terminator green chili stew', 450008),
+(25840693, 'salad', 450008),
+(25840694, 'pizza', 450012),
+(25840695, 'dilly tuna salad sandwich', 450012),
+(25840696, 'fireside roasted turkey', 450012),
+(25840697, 'local gyro', 450012),
+(25840698, 'Portland dip', 450012),
+(25840699, 'Captain Neon burger', 450012),
+(25840700, 'Dungeon burger', 450012),
+(25840701, 'Wilbur\'s Jumbo Deluxe burger', 450012),
+(25840702, 'Aztec salad', 450012),
+(25840703, 'Brewer\'s salad', 450012),
+(25840704, 'Soft Pretzel sticks', 450012),
+(25840705, 'Saigon Kick Chicken Tenders', 450012),
+(25840706, 'Scooby Snacks', 450012),
+(25840707, 'Tater Tots', 450012),
+(25840708, 'Cajun Tots', 450012),
+(25840709, 'burger', 450013),
+(25840710, 'double burger', 450013),
+(25840711, 'fries', 450013),
+(25840712, 'tots', 450013),
+(25840713, 'milkshake', 450013),
+(25840714, 'mac and cheese', 450010),
+(25840715, 'bacon mac and cheese', 450010),
+(25840716, 'hot dog', 450010),
+(25840717, 'burger', 450010),
+(25840718, 'fries', 450010),
+(25840719, 'tots', 450010),
+(25840720, 'philly cheese steak', 450011),
+(25840721, 'chipotle cheese steak', 450011),
+(25840722, 'big kahuna cheese steak', 450011),
+(25840723, 'chicken philly', 450011),
+(25840724, 'chipoltle chicken cheese steak', 450011),
+(25840725, 'BBQ Beef', 450011),
+(25840726, 'Grilled Pastrami Reuben', 450011),
+(25840727, 'Meatball and cheese', 450011),
+(25840728, 'Ham and provolone', 450011),
+(25840729, 'Turkey and provolone', 450011),
+(25840730, 'super sub', 450011),
+(25840731, 'italian sub', 450011),
+(25840732, 'BLT', 450011),
+(25840733, 'meatzza', 450009),
+(25840734, 'philly cheese steak', 450009),
+(25840735, 'pacific veggie', 450009),
+(25840736, 'honolulu hawaiian', 450009),
+(25840737, 'deluxe', 450009),
+(25840738, 'cali chicken bacon ranch', 450009),
+(25840739, 'buffalo chicken', 450009),
+(25840740, 'ultimate pepperoni', 450009),
+(25840741, 'memphis BBQ Chicken', 450009),
+(25840742, 'Wisconsin 6 cheese', 450009),
+(25840743, 'spinach and feta', 450009),
+(25840744, 'BBQ wings', 450009),
+(25840745, 'plain wings', 450009),
+(25840746, 'hot wings', 450009),
+(25840747, 'loco moco', 450006),
+(25840748, 'hawaiian style steak', 450006),
+(25840749, 'sweet sheyu chicken', 450006),
+(25840750, 'teriyaki chicken', 450006),
+(25840751, 'Kalla\'s Sweet ribs', 450006),
+(25840752, 'corvegas', 450005),
+(25840753, 'zorba', 450005),
+(25840754, 'omaha or bust', 450005),
+(25840755, 'Raider v spartan', 450005),
+(25840756, 'marilyn Monroe', 450005),
+(25840757, 'Hoodoo you love', 450005),
+(25840758, 'rat pack special', 450005),
+(25840759, 'tejano', 450005),
+(25840760, 'dog running', 450005),
+(25840761, 'mary\'s peak', 450005),
+(25840762, 'bob marley', 450005),
+(25840763, 'the bent', 450005),
+(25840764, 'vegan love', 450005),
+(25840765, 'bill walton', 450005),
+(25840766, 'margharita', 450005),
+(25840767, 'benny\'s delight', 450005),
+(25840768, 'herbivore', 450005),
+(25840769, 'corvegas', 450007),
+(25840770, 'zorba', 450007),
+(25840771, 'omaha or bust', 450007),
+(25840772, 'Raider v spartan', 450007),
+(25840773, 'marilyn Monroe', 450007),
+(25840774, 'Hoodoo you love', 450007),
+(25840775, 'rat pack special', 450007),
+(25840776, 'tejano', 450007),
+(25840777, 'mary\'s peak', 450007),
+(25840778, 'dog running', 450007),
+(25840779, 'bob marley', 450007),
+(25840780, 'the bent', 450007),
+(25840781, 'vegan love', 450007),
+(25840782, 'bill walton', 450007),
+(25840783, 'margharita', 450007),
+(25840784, 'benny\'s delight', 450007),
+(25840785, 'herbivore', 450007),
+(25840786, 'Bacon Cheese Stuffed', 450001),
+(25840787, 'Cheese stuffed', 450001),
+(25840788, 'Colossal Burger', 450001),
+(25840789, 'Milkshake', 450001),
+(25840790, 'Three cheese burger', 450001),
+(25840791, 'Spicy Sriracha meltdown', 450001),
+(25840792, 'big kahuna', 450001),
+(25840793, 'chicken sandwich', 450001);
 
 -- --------------------------------------------------------
 
@@ -148,17 +229,16 @@ CREATE TABLE `Owner` (
 --
 
 INSERT INTO `Owner` (`Owner_ID`, `Owner_name`, `Account_ID`) VALUES
-(234567, 'Johnny', 111111),
-(345678, 'Johnny', 222314),
-(352356, 'Alicia Durant', 999999),
-(456789, 'Super Johnny', 345313),
-(500000, 'Kuai Liang', 540000),
-(534242, 'Emma Morris', 888992),
-(654321, 'Mike', 454354),
-(765432, 'John Thomas', 555555),
-(876543, 'Zach', 666542),
-(987654, 'Julie Tracy', 721377),
-(987655, 'st', 123);
+(987658, 'Cheese Stuffed', 932001),
+(987664, 'American Dream', 123000),
+(987665, 'Local Boyz', 123040),
+(987666, 'Bombs Away', 123202),
+(987667, 'Dominos', 123050),
+(987668, 'Downward Dog', 123060),
+(987669, 'Jersey Mike', 123070),
+(987670, 'McMenamins', 123080),
+(987671, 'Beaver Hut', 123090),
+(987672, 'Clodfelters', 123110);
 
 -- --------------------------------------------------------
 
@@ -168,7 +248,7 @@ INSERT INTO `Owner` (`Owner_ID`, `Owner_name`, `Account_ID`) VALUES
 
 CREATE TABLE `Restaurant` (
   `restaurant_ID` int(6) NOT NULL,
-  `restaurant_name` char(20) NOT NULL,
+  `restaurant_name` char(40) NOT NULL,
   `address` char(40) NOT NULL,
   `owner_id` int(6) NOT NULL,
   `avg_review` decimal(3,2) DEFAULT NULL
@@ -179,17 +259,18 @@ CREATE TABLE `Restaurant` (
 --
 
 INSERT INTO `Restaurant` (`restaurant_ID`, `restaurant_name`, `address`, `owner_id`, `avg_review`) VALUES
-(5, 'The Market', '123 nw 123', 987655, '4.00'),
-(120000, 'Mcdonalds King', '4321 Aquafina Drive', 876543, '2.00'),
-(123234, 'La Grande', '2235 Moon Way', 234567, '2.00'),
-(250000, 'Fire Wing Place', '3523 South Street', 345678, '2.00'),
-(250050, 'The Last Laugh', '5432 Easterhead Avenue', 987654, '3.20'),
-(300000, 'New Hotness', '5432 Apartment Complex', 654321, '5.00'),
-(310000, 'Place', '2345 Not-Monroe Street', 456789, '4.10'),
-(312500, 'Switch', '3214 5th Street Apt', 534242, '3.00'),
-(320000, 'Olive Garden 2', '1234 Dasani Way', 765432, '2.00'),
-(400000, 'Generic Name', '123 Fake Street', 352356, '3.00'),
-(450000, 'Better Burger', '4th Floor Kerr', 500000, '5.00');
+(100001, 'Cheesy Stuffed Burgers Madison', '453 SW Madison Ave', 987658, '5.00'),
+(450001, 'Cheesy Stuffed Burgers Truck', '1545 NW Monroe Ave', 987658, '1.00'),
+(450005, 'American Dream Campus', '2525 NW Monroe Ave', 987664, '4.00'),
+(450006, 'Local Boyz Hawaiian Cafe', '1425 NW Monroe Ave', 987665, '2.00'),
+(450007, 'American Dream Downtown', '214 SW 2nd St', 987664, '2.00'),
+(450008, 'Bombs Away Cafe', '2527 NW Monroe Ave', 987666, '3.00'),
+(450009, 'Domino\'s Pizza', '2455 NW Monroe Ave', 987667, '1.00'),
+(450010, 'The Downward Dog', '2305 NW Monroe Ave', 987668, '4.00'),
+(450011, 'Jersey Mike\'s Subs', '2051 NW Monroe Ave', 987669, '5.00'),
+(450012, 'McMenamins on Monroe', '2001 NW Monroe Ave', 987670, '3.33'),
+(450013, 'The Beaver Hut Dam Growlers', '1603 NW Monroe Ave', 987671, '3.00'),
+(450014, 'Clodfelter\'s', '1501 NW Monroe Ave', 987672, '4.00');
 
 -- --------------------------------------------------------
 
@@ -200,7 +281,7 @@ INSERT INTO `Restaurant` (`restaurant_ID`, `restaurant_name`, `address`, `owner_
 CREATE TABLE `Review` (
   `Review_ID` int(6) NOT NULL,
   `rating` decimal(3,2) NOT NULL,
-  `description` char(100) NOT NULL,
+  `description` char(240) NOT NULL,
   `sID` int(6) NOT NULL,
   `item_ID` int(6) DEFAULT NULL,
   `restaurant_ID` int(6) NOT NULL,
@@ -212,20 +293,21 @@ CREATE TABLE `Review` (
 --
 
 INSERT INTO `Review` (`Review_ID`, `rating`, `description`, `sID`, `item_ID`, `restaurant_ID`, `date_added`) VALUES
-(100005, '4.00', 'great food', 233465, 123122, 123234, '2019-06-08'),
-(100147, '3.00', 'passable.', 123, 234567, 250000, '2019-06-08'),
-(124521, '2.00', 'no.', 321333, 150000, 320000, '2019-06-02'),
-(134523, '4.10', 'Terrible', 454354, NULL, 310000, '2019-06-02'),
-(154356, '3.20', 'Okay', 456777, NULL, 250050, '2019-06-02'),
-(173490, '0.00', 'Real bad.', 321333, NULL, 123234, '2019-06-05'),
-(181259, '2.00', 'Slightly less hair in my food', 321333, NULL, 250000, '2019-06-08'),
-(981261, '1.00', 'Real bad.', 321333, 123000, 120000, '2019-06-08'),
-(981269, '3.00', 'Noodles were crunchy', 555222, 123123, 120000, '2019-06-09'),
-(981270, '5.00', 'Best chicken wings I\'ve ever had!', 321333, 345678, 300000, '2019-06-09'),
-(981276, '4.00', 'This is the best ham soup I\'ve ever had!', 932000, 981278, 5, '2019-06-09'),
-(981277, '3.00', 'Not sure exactly what this restaurant is supposed to be, but the steak was good', 932000, 981279, 312500, '2019-06-09'),
-(981278, '3.00', 'it was alright', 932000, 981280, 400000, '2019-06-09'),
-(981279, '5.00', 'these burgers are to DIE for', 932000, 981283, 450000, '2019-06-09');
+(981306, '4.00', 'This swiss cheese and mushroom burger was awesome!', 932011, 25840700, 450012, '2019-06-10'),
+(981307, '3.00', 'The burger was cheap, tasty and filling!', 932012, 25840710, 450013, '2019-06-10'),
+(981308, '3.00', 'the nachos were pretty good', 932013, 25840688, 450008, '2019-06-10'),
+(981309, '4.00', 'the hot dog was good', 932014, 25840716, 450010, '2019-06-10'),
+(981310, '2.00', 'there was too much meat on my pizza', 932015, 25840769, 450007, '2019-06-10'),
+(981311, '2.00', 'used too much celery', 932016, 25840695, 450012, '2019-06-10'),
+(981312, '2.00', 'not enough vegetarian options', 932017, NULL, 450006, '2019-06-10'),
+(981313, '1.00', 'no vegetarian options', 932018, NULL, 450001, '2019-06-10'),
+(981314, '1.00', 'the staff was rude', 932019, NULL, 450009, '2019-06-10'),
+(981315, '5.00', 'the best cheese steak I\'ve ever had!', 932020, 25840721, 450011, '2019-06-10'),
+(981316, '4.00', 'They were pretty good, and the service was great', 932021, 25840746, 450014, '2019-06-10'),
+(981317, '4.00', 'great vegetarian option', 932021, 25840785, 450005, '2019-06-10'),
+(981318, '5.00', 'this giant burger as amazing and fed me and my dad', 932000, 25840656, 100001, '2019-06-10'),
+(981321, '4.00', 'love the tater tots and the spinach dip, very good appetizers to share with anyone who you visit this location with', 932012, 25840707, 450012, '2019-06-10'),
+(981323, '5.00', 'NULL REVIEW', 321432, NULL, 100001, '2019-06-10');
 
 --
 -- Triggers `Review`
@@ -260,24 +342,20 @@ CREATE TABLE `Student` (
 --
 
 INSERT INTO `Student` (`sID`, `sname`, `Account_ID`) VALUES
-(123, 'steve', 123),
-(932, 'Jack Davis', 932),
-(1999, 'Tony Pietro', 1999),
-(233465, 'Gordon Pal', 721377),
-(321314, 'Michael', 454354),
-(321333, 'Joseph', 111111),
-(343442, 'John', 222314),
-(454354, 'Super Kon', 345313),
-(456777, 'Kayla Song', 999999),
-(463843, 'Jack Davis', 463843),
-(500500, 'Hanzo Hasashi', 540000),
-(543534, 'Tommy Gunn', 555555),
-(546456, 'This is a Test', 546456),
+(321432, 'gdfhsgre', 321432),
 (555222, 'Jack Davis', 555222),
-(555556, 'TESTMAN', 555556),
-(654363, 'Zaine', 666542),
-(876686, 'Tzu Sun', 888992),
-(932000, 'Zachary Horine', 932000);
+(932000, 'Zachary Horine', 932000),
+(932011, 'Mike Huang', 932011),
+(932012, 'Leslie O\'connor', 932012),
+(932013, 'Craig Donnahue', 932013),
+(932014, 'Francis Hineman', 932014),
+(932015, 'Vivian Harmann', 932015),
+(932016, 'Bina Spray', 932016),
+(932017, 'Leopold Fitzgerald', 932017),
+(932018, 'Billy Dean Howard', 932018),
+(932019, 'Jay Gatsby', 932019),
+(932020, 'Shelby Marsche', 932020),
+(932021, 'John Smith', 932021);
 
 --
 -- Indexes for dumped tables
@@ -287,7 +365,8 @@ INSERT INTO `Student` (`sID`, `sname`, `Account_ID`) VALUES
 -- Indexes for table `Account`
 --
 ALTER TABLE `Account`
-  ADD PRIMARY KEY (`Account_ID`);
+  ADD PRIMARY KEY (`Account_ID`),
+  ADD UNIQUE KEY `Username` (`Username`);
 
 --
 -- Indexes for table `Item`
@@ -335,19 +414,19 @@ ALTER TABLE `Student`
 -- AUTO_INCREMENT for table `Account`
 --
 ALTER TABLE `Account`
-  MODIFY `Account_ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000000;
+  MODIFY `Account_ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=932061;
 
 --
 -- AUTO_INCREMENT for table `Item`
 --
 ALTER TABLE `Item`
-  MODIFY `item_ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=981284;
+  MODIFY `item_ID` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25840795;
 
 --
 -- AUTO_INCREMENT for table `Owner`
 --
 ALTER TABLE `Owner`
-  MODIFY `Owner_ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=987656;
+  MODIFY `Owner_ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=987673;
 
 --
 -- AUTO_INCREMENT for table `Restaurant`
@@ -359,13 +438,13 @@ ALTER TABLE `Restaurant`
 -- AUTO_INCREMENT for table `Review`
 --
 ALTER TABLE `Review`
-  MODIFY `Review_ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=981280;
+  MODIFY `Review_ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=981324;
 
 --
 -- AUTO_INCREMENT for table `Student`
 --
 ALTER TABLE `Student`
-  MODIFY `sID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=932001;
+  MODIFY `sID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=932061;
 
 --
 -- Constraints for dumped tables
@@ -381,7 +460,7 @@ ALTER TABLE `Item`
 -- Constraints for table `Owner`
 --
 ALTER TABLE `Owner`
-  ADD CONSTRAINT `Owner_ibfk_1` FOREIGN KEY (`Account_ID`) REFERENCES `Account` (`Account_ID`);
+  ADD CONSTRAINT `Owner_ibfk_1` FOREIGN KEY (`Account_ID`) REFERENCES `Account` (`Account_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `Restaurant`
@@ -395,13 +474,13 @@ ALTER TABLE `Restaurant`
 ALTER TABLE `Review`
   ADD CONSTRAINT `Review_ibfk_1` FOREIGN KEY (`sID`) REFERENCES `Student` (`sID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Review_ibfk_2` FOREIGN KEY (`restaurant_ID`) REFERENCES `Restaurant` (`restaurant_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Review_ibfk_3` FOREIGN KEY (`item_ID`) REFERENCES `Item` (`item_ID`);
+  ADD CONSTRAINT `Review_ibfk_3` FOREIGN KEY (`item_ID`) REFERENCES `Item` (`item_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `Student`
 --
 ALTER TABLE `Student`
-  ADD CONSTRAINT `Student_ibfk_1` FOREIGN KEY (`Account_ID`) REFERENCES `Account` (`Account_ID`);
+  ADD CONSTRAINT `Student_ibfk_1` FOREIGN KEY (`Account_ID`) REFERENCES `Account` (`Account_ID`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
