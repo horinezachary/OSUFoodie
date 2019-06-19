@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: Jun 18, 2019 at 11:01 PM
+-- Generation Time: Jun 18, 2019 at 11:08 PM
 -- Server version: 10.3.13-MariaDB-log
 -- PHP Version: 7.0.33
 
@@ -23,6 +23,44 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `cs340_horinez` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `cs340_horinez`;
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`cs340_horinez`@`%` PROCEDURE `updateAvgReview` (IN `rid` INT(6))  NO SQL
+BEGIN 
+    UPDATE Restaurant
+            SET avg_review = (SELECT avg(rating) FROM Review NATURAL JOIN Restaurant WHERE restaurant_id = rid)
+    WHERE restaurant_id = rid;
+END$$
+
+--
+-- Functions
+--
+CREATE DEFINER=`cs340_horinez`@`%` FUNCTION `restaurantRank` (`x` VARCHAR(6)) RETURNS VARCHAR(10) CHARSET utf8 NO SQL
+BEGIN
+declare average decimal(3,2);
+
+ SELECT AVG(rating) INTO average FROM Review R, Restaurant R1 WHERE
+ R1.restaurant_ID = R.restaurant_ID AND X = R1.restaurant.ID GROUP
+BY R1.restaurant_ID;
+
+ IF average IS NULL THEN
+ RETURN 'No Reviews';
+ END IF;
+
+ IF average > 4.0 THEN
+ RETURN "GREAT";
+ END IF;
+
+ IF average > 2.5 THEN
+ RETURN "GOOD";
+ END IF;
+ RETURN 'BAD';
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
